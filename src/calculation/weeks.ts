@@ -25,7 +25,7 @@ export function toDayJSWeekday(
             date = firstdayofthisweek.add(weekdayOffset + 7, 'day');
             break;
         case "last":
-            date = firstdayofthisweek.subtract(7 - weekdayOffset, 'day');
+            date = firstdayofthisweek.add(weekdayOffset, 'day').subtract(7, 'day');
             break;
     }
 
