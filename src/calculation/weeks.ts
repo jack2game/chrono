@@ -9,8 +9,8 @@ export function toDayJSWeekday(
 
     let date = dayjs(refDate).locale("en");
     const weekStart = locale?.weekStart ?? 0;
-    const daystofirstdayfothisweek = (7 - weekStart + date.day()) % 7;
-    const firstdayofthisweek = date.subtract(daystofirstdayfothisweek, 'day');
+    const daystofirstdayofthisweek = (7 - weekStart + date.day()) % 7;
+    const firstdayofthisweek = date.subtract(daystofirstdayofthisweek, 'day');
 
     const weekdayOffset = (7 + offset - weekStart) % 7;
 
