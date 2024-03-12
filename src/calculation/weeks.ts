@@ -7,7 +7,7 @@ export function toDayJSWeekday(
     locale?: Partial<ILocale>
 ): Dayjs {
 
-    let date = dayjs(refDate).locale("en");
+    let date = dayjs().locale("en");
     const weekStart = locale?.weekStart ?? 0;
     const daystofirstdayofthisweek = (7 - weekStart + date.day()) % 7;
     const firstdayofthisweek = date.subtract(daystofirstdayofthisweek, 'day');
