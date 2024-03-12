@@ -10,19 +10,22 @@ export function toDayJSWeekday(
         return toDayJSClosestWeekday(refDate, offset, locale);
     }
 
-    let date = dayjs(refDate).locale("en", locale);
+    let date = dayjs(refDate).locale("en");
     const weekStart = locale?.weekStart ?? 0;
+    const daystofirstdayfothisweek = (7 - weekStart + date.day()) % 7;
+    const firstdayofthisweek = date.subtract(daystofirstdayfothisweek, 'day');
+
     const weekdayOffset = (7 + offset - weekStart) % 7;
 
     switch (modifier) {
         case "this":
-            date = date.weekday(weekdayOffset);
+            date = firstdayofthisweek.add(weekdayOffset, 'day');
             break;
         case "next":
-            date = date.weekday(weekdayOffset + 7);
+            date = firstdayofthisweek.add(weekdayOffset + 7, 'day');
             break;
         case "last":
-            date = date.weekday(weekdayOffset - 7);
+            date = firstdayofthisweek.substract(7 - weekdayOffset, 'day');
             break;
     }
 
