@@ -10,7 +10,7 @@ export function toDayJSWeekday(
         return toDayJSClosestWeekday(refDate, offset, locale);
     }
 
-    let date = dayjs(refDate).locale("en", locale);
+    let date = dayjs(refDate).locale("en");
     const weekStart = locale?.weekStart ?? 0;
     const weekdayOffset = (7 + offset - weekStart) % 7;
 
