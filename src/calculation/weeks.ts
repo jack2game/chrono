@@ -6,9 +6,6 @@ export function toDayJSWeekday(
     modifier?: "this" | "next" | "last",
     locale?: Partial<ILocale>
 ): Dayjs {
-    if (!modifier) {
-        return toDayJSClosestWeekday(refDate, offset, locale);
-    }
 
     let date = dayjs(refDate).locale("en");
     const weekStart = locale?.weekStart ?? 0;
@@ -17,6 +14,10 @@ export function toDayJSWeekday(
 
     const weekdayOffset = (7 + offset - weekStart) % 7;
 
+    if (!modifier) {
+        return firstdayofthisweek.add(weekdayOffset, 'day');
+    }
+    
     switch (modifier) {
         case "this":
             date = firstdayofthisweek.add(weekdayOffset, 'day');
