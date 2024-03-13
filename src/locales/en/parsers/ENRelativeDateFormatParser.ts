@@ -38,9 +38,11 @@ export default class ENRelativeDateFormatParser extends AbstractParserWithWordBo
         const components = context.createParsingComponents();
         let date = dayjs(context.reference.instant);
 
+        const weekStart = context.option.locale?.weekStart ?? 0;
+
         // This week
         if (unitWord.match(/week/i)) {
-            date = date.add(-date.get("d"), "d");
+            date = date.add(-date.get("d") + weekStart, "d");
             components.imply("day", date.date());
             components.imply("month", date.month() + 1);
             components.imply("year", date.year());
